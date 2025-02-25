@@ -1,6 +1,6 @@
-# Hello World CMake Project
+# Person Class CMake Project
 
-A simple Hello World program built with CMake.
+A simple Person class built with CMake.
 
 ## Prerequisites
 

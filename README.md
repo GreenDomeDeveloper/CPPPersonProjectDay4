@@ -23,25 +23,53 @@ A simple Hello World program built with CMake.
 
 ## Person Class Overview
 
-The `Person` class is a simple representation of a person with a name and age. It provides functionality to get and set these attributes, as well as increment the age.
+The `Person` class demonstrates various C++ concepts including constructors, destructors, memory management, operator overloading, and encapsulation. It tracks a global population count of all Person objects.
 
 ### Private Member Variables
 
-- `name`: A string representing the name of the person.
-- `age`: An integer representing the age of the person.
+- `name`: A string representing the person's full name.
+- `age`: An integer representing the person's age in years.
+- `nickname`: A dynamically allocated C-string for the person's nickname.
+- `isValidAge(int)`: A helper method that validates if an age is between 0 and 120.
 
 ### Public Member Functions
 
-- `string getName()`: Returns the name of the person.
-- `int getAge()`: Returns the age of the person.
-- `void setName(string newName)`: Sets the name of the person.
-- `void setAge(int newAge)`: Sets the age of the person.
-- `void hasBirthday()`: Increments the age of the person by one.
+#### Constructors and Destructor
+- `Person()`: Default constructor that initializes name to "John Doe", age to 42, and nickname to "Buddy".
+- `Person(string name, int age)`: Constructor that sets name and age (if valid), with default nickname "Buddy".
+- `Person(string name, int age, char* nickname)`: Constructor that sets name, age (if valid), and copies the provided nickname.
+- `Person(const Person& other)`: Copy constructor that creates a deep copy of another Person object.
+- `~Person()`: Destructor that frees dynamically allocated memory and decrements the population count.
 
-### Constructors
+#### Getters
+- `string getName()`: Returns the person's name.
+- `int getAge()`: Returns the person's age.
+- `char* getNickname()`: Returns a pointer to the person's nickname.
+- `static int getPopulation()`: Returns the total count of Person objects.
 
-- `Person()`: Default constructor that initializes the name to "John Doe" and the age to 42.
-- `Person(string newName, int newAge)`: Parameterized constructor that allows setting the name and age.
+#### Setters
+- `void setName(string name)`: Sets the person's name.
+- `void setAge(int age)`: Sets the person's age if the value is valid (0-120).
+- `void setNickname(char* nickname)`: Sets the person's nickname, managing memory appropriately.
+
+#### Other Methods
+- `void hasBirthday()`: Increments the person's age by one.
+- `void printInfo()`: Prints the person's information to the console.
+
+#### Operator Overloads
+- `Person& operator=(const Person& other)`: Assignment operator that performs a deep copy.
+- `friend ostream& operator<<(ostream& os, const Person& person)`: Stream insertion operator for easy output.
+
+### Static Members
+- `population`: A static variable that tracks the total number of Person objects.
+
+## Memory Management
+
+The `Person` class demonstrates proper memory management for dynamically allocated resources:
+- Allocates memory for the nickname in constructors
+- Properly deallocates memory in the destructor and when setting a new nickname
+- Implements deep copying in the copy constructor and assignment operator
+- Handles self-assignment in the assignment operator
 
 ## Building the Project
 
